@@ -1,0 +1,78 @@
+body,
+html {
+	height: 100%;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #4682b4;
+	font-family: Arial, sans-serif;
+}
+
+.registration-box {
+	background-color: white;
+	padding: 40px;
+	border-radius: 10px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	width: 300px;
+	text-align: center;
+	margin: 0 20px;
+}
+.registration-box h2 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+.registration-box input[type="text"],
+.registration-box input[type="email"],
+.registration-box input[type="password"] {
+	width: calc(100% - 20px);
+	padding: 10px;
+	margin: 8px 0;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+.registration-box button {
+	width: 100%;
+	padding: 10px;
+	background-color: #4682b4;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 14px;
+	margin-top: 10px;
+	text-align: center;
+}
+.registration-box button:hover {
+	background-color: #5a99c4;
+}
+.separator {
+	height: 1px;
+	background-color: #ccc;
+	margin: 20px 0;
+}
+.options {
+	text-align: center;
+}
+.options a {
+	display: block;
+	margin: 5px 0;
+	color: #4682b4;
+	text-decoration: none;
+}
+.options a:hover {
+	text-decoration: underline;
+}
+
+.alert {
+	padding: 15px;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	font-size: 14px;
+}
+
+.alert-failed {
+	background-color: #edd4d4;
+	color: #571515;
+	border: 1px solid #e6c3c3;
+}
