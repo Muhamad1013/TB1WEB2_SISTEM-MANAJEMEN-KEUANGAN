@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2024 at 10:44 AM
+-- Generation Time: Oct 04, 2024 at 08:11 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -41,7 +41,9 @@ CREATE TABLE `pemasukan` (
 
 INSERT INTO `pemasukan` (`id_pemasukan`, `id_pengguna`, `nominal_masuk`, `tanggal_masuk`, `deskripsi`) VALUES
 (1, 1, 10000000.00, '2024-10-02', 'pemasukan hari ini'),
-(2, 1, 25000000.00, '2024-10-02', 'uang masuk');
+(2, 1, 25000000.00, '2024-10-02', 'uang masuk'),
+(3, 1, 100000000.00, '2024-09-29', 'uang gajian'),
+(4, 9, 25000000.00, '2024-10-05', 'uang masuk');
 
 -- --------------------------------------------------------
 
@@ -62,7 +64,8 @@ CREATE TABLE `pengeluaran` (
 --
 
 INSERT INTO `pengeluaran` (`id_pengeluaran`, `id_pengguna`, `nominal_keluar`, `tanggal_keluar`, `deskripsi`) VALUES
-(1, 1, 1500000.00, '2024-10-02', 'pengeluaran hari ini');
+(1, 1, 1500000.00, '2024-10-02', 'pengeluaran hari ini'),
+(2, 1, 90000000.00, '2024-10-05', 'pembelian barang');
 
 -- --------------------------------------------------------
 
@@ -72,18 +75,23 @@ INSERT INTO `pengeluaran` (`id_pengeluaran`, `id_pengguna`, `nominal_keluar`, `t
 
 CREATE TABLE `pengguna` (
   `id_pengguna` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
   `nama_pengguna` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `gambar` varchar(255) NOT NULL,
+  `tanggal_dibuat` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pengguna`
 --
 
-INSERT INTO `pengguna` (`id_pengguna`, `username`, `password`, `nama_pengguna`, `email`) VALUES
-(1, 'tes', 'tes', 'Muhamad Rafli', 'rafligaming13@gmail.com');
+INSERT INTO `pengguna` (`id_pengguna`, `nama_pengguna`, `email`, `password`, `gambar`, `tanggal_dibuat`) VALUES
+(1, 'Muhamad Rafli', 'rafligaming13@gmail.com', 'tes', '', '2024-10-03 17:11:58'),
+(8, 'coba', 'coba@gmail.com', 'coba', '', '2024-10-03 12:25:05'),
+(9, 'lala', 'lala@gmail.com', 'lala', '', '2024-10-03 12:56:25'),
+(10, 'rafi', 'rafi@gmail.com', 'rafi', '', '2024-10-03 13:12:43'),
+(11, 'wawa', 'wawa@gmail.com', 'wawa', '', '2024-10-04 08:58:40');
 
 --
 -- Indexes for dumped tables
@@ -117,19 +125,19 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `pemasukan`
 --
 ALTER TABLE `pemasukan`
-  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
-  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
