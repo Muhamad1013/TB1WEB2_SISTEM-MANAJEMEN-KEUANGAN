@@ -107,6 +107,22 @@
     }
   });
 </script>
+<script>
+  function filterKategori() {
+    var filter = document.getElementById("filter-time").value;
+
+    // Lakukan request Ajax untuk filter data
+    $.ajax({
+      url: '<?= base_url("kategori/filter") ?>',
+      type: 'POST',
+      data: { filter: filter },
+      success: function (response) {
+        // Ganti isi tabel dengan data yang difilter
+        $("#kategoriTable").html(response);
+      }
+    });
+  }
+</script>
 
 <body>
   <html>

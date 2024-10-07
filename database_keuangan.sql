@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2024 at 08:45 AM
+-- Generation Time: Oct 07, 2024 at 08:40 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `database_keuangan`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kategori`
+--
+
+CREATE TABLE `kategori` (
+  `id_kategori` int(11) NOT NULL,
+  `id_pengguna` int(11) NOT NULL,
+  `deskripsi` varchar(255) NOT NULL,
+  `tanggal_dibuat` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`id_kategori`, `id_pengguna`, `deskripsi`, `tanggal_dibuat`) VALUES
+(1, 1, 'Tes', '2024-10-07 03:43:56'),
+(2, 1, 'WAWA', '2024-11-08 08:48:21');
 
 -- --------------------------------------------------------
 
@@ -43,7 +64,8 @@ INSERT INTO `pemasukan` (`id_pemasukan`, `id_pengguna`, `nominal_masuk`, `tangga
 (1, 1, 10000000.00, '2024-10-02', 'pemasukan hari ini'),
 (2, 1, 25000000.00, '2024-10-02', 'uang masuk'),
 (3, 1, 100000000.00, '2024-09-29', 'uang gajian'),
-(4, 9, 25000000.00, '2024-10-05', 'uang masuk');
+(4, 9, 25000000.00, '2024-10-05', 'uang masuk'),
+(5, 12, 100000000.00, '2024-10-07', 'Uang gajian');
 
 -- --------------------------------------------------------
 
@@ -91,11 +113,20 @@ INSERT INTO `pengguna` (`id_pengguna`, `nama_pengguna`, `email`, `password`, `ga
 (8, 'coba', 'coba@gmail.com', 'coba', '', '2024-10-03 12:25:05'),
 (9, 'lala', 'lala@gmail.com', 'lala', '', '2024-10-03 12:56:25'),
 (10, 'rafi', 'rafi@gmail.com', 'rafi', '', '2024-10-03 13:12:43'),
-(11, 'wawa', 'wawa@gmail.com', 'wawa', '', '2024-10-04 08:58:40');
+(11, 'wawa', 'wawa@gmail.com', 'wawa', '', '2024-10-04 08:58:40'),
+(12, 'Muhammad Syahrul Adha', 'syahrul@gmail.com', 'syahrul', 'path/to/default/image.png', '2024-10-06 21:03:04'),
+(13, 'arvian', 'arvian@gmail.com', 'arvian', 'path/to/default/image.png', '2024-10-07 01:12:24');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `kategori`
+--
+ALTER TABLE `kategori`
+  ADD PRIMARY KEY (`id_kategori`),
+  ADD KEY `id_pengguna` (`id_pengguna`);
 
 --
 -- Indexes for table `pemasukan`
@@ -122,10 +153,16 @@ ALTER TABLE `pengguna`
 --
 
 --
+-- AUTO_INCREMENT for table `kategori`
+--
+ALTER TABLE `kategori`
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `pemasukan`
 --
 ALTER TABLE `pemasukan`
-  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pengeluaran`
@@ -137,11 +174,17 @@ ALTER TABLE `pengeluaran`
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `kategori`
+--
+ALTER TABLE `kategori`
+  ADD CONSTRAINT `kategori_ibfk_1` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pemasukan`

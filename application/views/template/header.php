@@ -7,8 +7,13 @@
   <title><?php echo $judul; ?></title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
   <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
   <link rel="stylesheet" href="<?= base_url(); ?>layout/css/style.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>layout/css/password.css">
 </head>
 
 <body>
@@ -37,13 +42,14 @@
       <a href="<?= base_url(); ?>"><i class="fas fa-tachometer-alt"></i>
         <p class="text-icon">Dashboard</p>
       </a>
-      <a href="<?= base_url('index.php/Kategori'); ?>"><i class="fas fa-tags"></i>
-        <p class="text-icon">Data Kategori</p>
+      <a href="<?= base_url('index.php/Transaksi'); ?>"><i class="fas fa-tags"></i>
+        <p class="text-icon">Data Transaksi</p>
       </a>
       <a href="<?= base_url('index.php/Pengguna'); ?>"><i class="fas fa-users"></i>
         <p class="text-icon">Data Pengguna</p>
       </a>
-      <a href="<?= base_url('index.php/Laporan'); ?>"><i class="fas fa-file-invoice" style="font-size: 20px; margin: 3px; margin-right: 5px"></i>
+      <a href="<?= base_url('index.php/Laporan'); ?>"><i class="fas fa-file-invoice"
+          style="font-size: 20px; margin: 3px; margin-right: 5px"></i>
         <p class="text-icon">Laporan</p>
       </a>
       <a href="<?= base_url('index.php/Password'); ?>"><i class="fas fa-key"></i>
