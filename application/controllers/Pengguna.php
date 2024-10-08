@@ -25,7 +25,7 @@ class Pengguna extends CI_Controller
         $data['pengguna'] = $this->Pengguna_model->get_pengguna_by_id($id_pengguna);
         
         // Ambil gambar dan nama pengguna
-        $data['gambar'] = $data['pengguna']['gambar'] ?? 'default.png'; // Gambar pengguna
+        $data['user_images'] = $data['pengguna']['user_images'] ?? 'default.png'; // Gambar pengguna
         $data['nama_pengguna'] = $data['pengguna']['nama_pengguna'] ?? 'User'; // Nama pengguna
 
         // Set aturan validasi form
@@ -58,6 +58,9 @@ class Pengguna extends CI_Controller
                     // Jika gambar berhasil diupload
                     $upload_data = $this->upload->data();
                     $update_data['gambar'] = $upload_data['file_name']; // Simpan nama file gambar
+
+                    // Update session dengan gambar baru
+                    $this->session->set_userdata('gambar', $upload_data['file_name']);
                 } else {
                     // Jika gagal upload, tampilkan pesan error
                     $this->session->set_flashdata('message', $this->upload->display_errors());
@@ -72,9 +75,6 @@ class Pengguna extends CI_Controller
 
                 // Menyimpan data ke session
                 $this->session->set_userdata('nama_pengguna', $update_data['nama_pengguna']);
-                if (isset($update_data['gambar'])) {
-                    $this->session->set_userdata('gambar', $update_data['gambar']);
-                }
 
                 redirect('pengguna'); // Redirect ke index
             } else {
