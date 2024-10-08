@@ -15,6 +15,7 @@
     </div>
   </div>
 
+<<<<<<< Updated upstream
   <!-- Display flashdata for success or error messages -->
   <?php if ($this->session->flashdata('message')): ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -22,6 +23,47 @@
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
+=======
+    <!-- Tampilkan pesan flashdata jika ada -->
+    <?php if ($this->session->flashdata('message')): ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?= $this->session->flashdata('message'); ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php endif; ?>
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header blue-card">
+                    Edit Profil
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="<?= base_url('index.php/Pengguna'); ?>" enctype="multipart/form-data">
+                        <div class="form-group text-center">
+                            <!-- Tampilkan gambar profil -->
+                            <img src="<?= base_url('uploads/' . $pengguna['gambar']); ?>" alt="Profile Picture" class="rounded-circle" width="150px" height="150px">
+                            <br>
+                            <input type="file" class="form-control-file mt-2" name="gambar" accept="image/*">
+                        </div>
+                        <div class="form-group">
+                            <label for="nama_pengguna">Username</label>
+                            <input type="text" class="form-control" id="nama_pengguna" name="nama_pengguna" placeholder="Ganti Username..." value="<?= $pengguna['nama_pengguna']; ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Ganti Email..." value="<?= $pengguna['email']; ?>" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Simpan</button>
+                    </form>
+                    <br>
+                    <a href="<?= base_url('pengguna/change_password'); ?>" class="btn btn-outline-danger btn-block">Ganti Password</a>
+                </div>
+            </div>
+        </div>
+>>>>>>> Stashed changes
     </div>
   <?php endif; ?>
 
