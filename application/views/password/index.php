@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <!-- Menampilkan alert flashdata untuk pesan berhasil atau gagal -->
+  <!-- Success and Error Messages -->
   <?php if ($this->session->flashdata('message')): ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
       <?= $this->session->flashdata('message'); ?>
@@ -41,14 +41,16 @@
           Form Change Password
         </div>
         <div class="card-body">
-          <!-- Form untuk mengganti password -->
-          <form id="changePasswordForm" method="POST" action="<?= base_url('password/index'); ?>">
+          <!-- Password Change Form -->
+          <form id="changePasswordForm" method="POST" action="<?= base_url('index.php/password/update_password'); ?>">
             <div class="form-group">
               <label for="oldPassword">Old Password</label>
               <div class="input-group">
                 <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Enter Old Password" required>
                 <div class="input-group-append">
-                  <span class="input-group-text"><i class="fas fa-eye-slash" onclick="togglePasswordVisibility('oldPassword')"></i></span>
+                  <span class="input-group-text" onclick="togglePasswordVisibility('oldPassword')">
+                    <i class="fas fa-eye-slash"></i>
+                  </span>
                 </div>
               </div>
             </div>
@@ -56,9 +58,12 @@
             <div class="form-group">
               <label for="newPassword">New Password</label>
               <div class="input-group">
-                <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Enter New Password" required onkeyup="validatePassword()">
+                <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Enter New Password" required>
                 <div class="input-group-append">
-                  <span class="input-group-text"><i class="fas fa-eye-slash" onclick="togglePasswordVisibility('newPassword')"></i></span>
+                  <span class="input-group-text" onclick="togglePasswordVisibility('newPassword')">
+                    <i class="fas fa-eye-slash"></i>
+                  </span>
+                  
                 </div>
               </div>
               <ul class="password-criteria mt-2">
@@ -73,7 +78,9 @@
               <div class="input-group">
                 <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm New Password" required>
                 <div class="input-group-append">
-                  <span class="input-group-text"><i class="fas fa-eye-slash" onclick="togglePasswordVisibility('confirmPassword')"></i></span>
+                  <span class="input-group-text" onclick="togglePasswordVisibility('confirmPassword')">
+                    <i class="fas fa-eye-slash"></i>
+                  </span>
                 </div>
               </div>
             </div>
@@ -85,3 +92,21 @@
     </div>
   </div>
 </div>
+
+<script>
+  // Fungsi untuk toggle password visibility
+  function togglePasswordVisibility(id) {
+    var passwordField = document.getElementById(id);
+    var icon = passwordField.nextElementSibling.querySelector('i'); // Ambil elemen ikon
+
+    if (passwordField.type === "password") {
+      passwordField.type = "text"; // Ubah tipe menjadi text
+      icon.classList.remove("fa-eye-slash");
+      icon.classList.add("fa-eye"); // Ubah ikon menjadi eye
+    } else {
+      passwordField.type = "password"; // Ubah tipe kembali menjadi password
+      icon.classList.remove("fa-eye");
+      icon.classList.add("fa-eye-slash"); // Ubah ikon menjadi eye-slash
+    }
+  }
+</script>
