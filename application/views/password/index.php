@@ -46,19 +46,23 @@
             <div class="form-group">
               <label for="oldPassword">Old Password</label>
               <div class="input-group">
-                <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Enter Old Password" required>
+                <input type="password" class="form-control" id="oldPassword" name="oldPassword"
+                  placeholder="Enter Old Password" required>
                 <div class="input-group-append">
-                  <span class="input-group-text"><i class="fas fa-eye-slash" onclick="togglePasswordVisibility('oldPassword')"></i></span>
+                  <span class="input-group-text"><i class="fas fa-eye-slash"
+                      onclick="togglePasswordVisibility('oldPassword')"></i></span>
                 </div>
               </div>
             </div>
-  
+
             <div class="form-group">
               <label for="newPassword">New Password</label>
               <div class="input-group">
-                <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Enter New Password" required onkeyup="validatePassword()">
+                <input type="password" class="form-control" id="newPassword" name="newPassword"
+                  placeholder="Enter New Password" required onkeyup="validatePassword()">
                 <div class="input-group-append">
-                  <span class="input-group-text"><i class="fas fa-eye-slash" onclick="togglePasswordVisibility('newPassword')"></i></span>
+                  <span class="input-group-text"><i class="fas fa-eye-slash"
+                      onclick="togglePasswordVisibility('newPassword')"></i></span>
                 </div>
               </div>
               <ul class="password-criteria mt-2">
@@ -67,17 +71,19 @@
                 <li id="lowercase" class="invalid">At least 1 lowercase letter</li>
               </ul>
             </div>
-  
+
             <div class="form-group">
               <label for="confirmPassword">Confirm New Password</label>
               <div class="input-group">
-                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm New Password" required>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                  placeholder="Confirm New Password" required>
                 <div class="input-group-append">
-                  <span class="input-group-text"><i class="fas fa-eye-slash" onclick="togglePasswordVisibility('confirmPassword')"></i></span>
+                  <span class="input-group-text"><i class="fas fa-eye-slash"
+                      onclick="togglePasswordVisibility('confirmPassword')"></i></span>
                 </div>
               </div>
             </div>
-  
+
             <button type="submit" class="btn btn-primary btn-block">Change Password</button>
           </form>
         </div>
@@ -85,3 +91,17 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.getElementById('menu-toggle').addEventListener('click', function () {
+    var sidebar = document.getElementById('sidebar');
+    var content = document.getElementById('content');
+    var footer = document.querySelector('footer');
+
+    sidebar.classList.toggle('closed');
+    content.classList.toggle('shifted');
+
+    // Toggle class full-width pada footer
+    footer.classList.toggle('full-width');
+  });
+</script>

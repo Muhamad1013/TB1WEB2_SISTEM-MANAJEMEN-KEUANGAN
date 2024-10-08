@@ -60,3 +60,17 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.getElementById('menu-toggle').addEventListener('click', function () {
+    var sidebar = document.getElementById('sidebar');
+    var content = document.getElementById('content');
+    var footer = document.querySelector('footer');
+
+    sidebar.classList.toggle('closed');
+    content.classList.toggle('shifted');
+
+    // Toggle class full-width pada footer
+    footer.classList.toggle('full-width');
+  });
+</script>
