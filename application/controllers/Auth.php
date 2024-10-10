@@ -20,7 +20,7 @@ class Auth extends CI_Controller
         if ($this->input->post('email') && $this->input->post('password')) {
             $email = $this->input->post('email');
             $password = $this->input->post('password');
-            
+
             // Ambil data pengguna dari database berdasarkan email
             $user = $this->db->get_where('pengguna', ['email' => $email])->row();
 
@@ -31,7 +31,7 @@ class Auth extends CI_Controller
                 $this->session->set_userdata('id_pengguna', $user->id_pengguna);
                 $this->session->set_userdata('nama_pengguna', $user->nama_pengguna);
                 // Simpan gambar pengguna, gunakan gambar default jika tidak ada
-                $this->session->set_userdata('gambar', $user->gambar ?? 'default.png'); 
+                $this->session->set_userdata('gambar', $user->gambar ?? 'default.png');
 
                 // Redirect ke dashboard
                 redirect('dashboard');

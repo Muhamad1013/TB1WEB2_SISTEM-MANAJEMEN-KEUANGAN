@@ -12,7 +12,7 @@ class Password extends CI_Controller
 
   public function index()
   {
-    $data['judul'] = 'Change Password';
+    $data['judul'] = 'Ganti Password';
     $this->load->view('template/header', $data);
     $this->load->view('password/index', $data);
     $this->load->view('template/footer');

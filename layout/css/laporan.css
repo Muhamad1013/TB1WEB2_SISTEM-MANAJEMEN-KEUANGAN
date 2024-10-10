@@ -1,0 +1,110 @@
+.filter-laporan-box {
+	background-color: white;
+	border-top: 8px solid #4682b4;
+	border-radius: 2px;
+	padding: 3%;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+}
+
+/* Flexbox untuk elemen dalam filter */
+.flex-laporan {
+	display: flex; /* Menggunakan flexbox */
+	align-items: center; /* Rata tengah vertikal */
+	gap: 2%; /* Jarak antara elemen */
+}
+
+/* Gaya untuk label */
+.flex-laporan label {
+  font-weight: 500; /* Bobot font */
+	display: flex; /* Menggunakan flex untuk label dan input/select */
+	flex-direction: column; /* Mengatur elemen dalam kolom */
+}
+
+/* Input dan select */
+.flex-laporan input[type="date"],
+.flex-laporan select {
+  padding: 10px; /* Ruang di dalam input */
+	border: 1px solid #ced4da; /* Border input */
+	border-radius: 4px; /* Sudut membulat */
+  width: 250px;
+	margin-top: 5px; /* Jarak atas input/select */
+}
+
+/* Tombol */
+.flex-laporan button {
+	background-color: #4682b4; /* Warna latar belakang tombol */
+	color: white; /* Warna teks tombol */
+	border: none; /* Tanpa border */
+	padding: 10px 15px; /* Ruang dalam tombol */
+	border-radius: 4px; /* Sudut membulat */
+	cursor: pointer; /* Kursor saat hover */
+	transition: background-color 0.3s; /* Efek transisi */
+	margin-left: 10px; /* Jarak kiri tombol */
+  width: 250px;
+}
+
+.flex-laporan button:hover {
+	background-color: #0056b3; /* Warna saat hover */
+}
+
+/* Gaya untuk header filter laporan */
+.filter-laporan-box h4 {
+	margin-bottom: 20px; /* Jarak bawah untuk judul */
+	width: 100%; /* Lebar penuh */
+}
+
+/* Gaya untuk tabel laporan */
+.table {
+	width: 100%; /* Lebar penuh */
+	margin-top: 20px; /* Jarak atas tabel */
+	background-color: white; /* Warna latar belakang tabel */
+	border-radius: 5px; /* Sudut membulat */
+	overflow: hidden; /* Untuk membungkus border-radius */
+}
+
+.table th {
+	background-color: #4682b4; /* Warna latar belakang header tabel */
+	color: white; /* Warna teks header tabel */
+}
+
+.table td {
+	padding: 10px; /* Ruang dalam sel tabel */
+}
+
+/* Gaya untuk alert */
+.alert {
+	padding: 10px 15px; /* Ruang dalam alert */
+	margin-bottom: 20px; /* Jarak bawah alert */
+	border-radius: 4px; /* Sudut membulat */
+}
+
+.alert-success {
+	background-color: #d4edda; /* Warna latar belakang untuk sukses */
+	border-color: #c3e6cb; /* Warna border untuk sukses */
+}
+
+.alert-info {
+	background-color: #cce5ff; /* Warna latar belakang untuk info */
+	border-color: #b8daff; /* Warna border untuk info */
+}
+
+/* Gaya untuk tombol di alert */
+.alert .btn {
+	margin-top: 10px; /* Jarak atas tombol */
+}
+
+/* Gaya untuk tombol cetak dan unduh */
+.btn-custom {
+	background-color: #28a745; /* Warna latar belakang tombol cetak/unduh */
+	color: white; /* Warna teks */
+	padding: 10px 15px; /* Ruang dalam tombol */
+	border: none; /* Tanpa border */
+	border-radius: 4px; /* Sudut membulat */
+	cursor: pointer; /* Kursor saat hover */
+	margin-right: 10px; /* Jarak kanan */
+}
+
+.btn-custom:hover {
+	background-color: #218838; /* Warna saat hover */
+}

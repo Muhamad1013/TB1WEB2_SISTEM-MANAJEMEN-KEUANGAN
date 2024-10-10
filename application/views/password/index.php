@@ -3,12 +3,12 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-9">
-          <h3 class="mb-0">Change Password</h3>
+          <h3 class="mb-0"><?= $judul ?></h3>
         </div>
         <div class="col-sm-3">
           <ol class="breadcrumb float-sm-end">
             <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Change Password</li>
+            <li class="breadcrumb-item active" aria-current="page"><?= $judul ?></li>
           </ol>
         </div>
       </div>
@@ -46,7 +46,8 @@
             <div class="form-group">
               <label for="oldPassword">Old Password</label>
               <div class="input-group">
-                <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Enter Old Password" required>
+                <input type="password" class="form-control" id="oldPassword" name="oldPassword"
+                  placeholder="Enter Old Password" required>
                 <div class="input-group-append">
                   <span class="input-group-text" onclick="togglePasswordVisibility('oldPassword')">
                     <i class="fas fa-eye-slash"></i>
@@ -54,29 +55,26 @@
                 </div>
               </div>
             </div>
-  
+
             <div class="form-group">
               <label for="newPassword">New Password</label>
               <div class="input-group">
-                <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Enter New Password" required>
+                <input type="password" class="form-control" id="newPassword" name="newPassword"
+                  placeholder="Enter New Password" required>
                 <div class="input-group-append">
                   <span class="input-group-text" onclick="togglePasswordVisibility('newPassword')">
                     <i class="fas fa-eye-slash"></i>
                   </span>
-                  
+
                 </div>
               </div>
-              <ul class="password-criteria mt-2">
-                <li id="minLength" class="invalid">Minimum 6 characters</li>
-                <li id="uppercase" class="invalid">At least 1 uppercase letter</li>
-                <li id="lowercase" class="invalid">At least 1 lowercase letter</li>
-              </ul>
             </div>
-  
+
             <div class="form-group">
               <label for="confirmPassword">Confirm New Password</label>
               <div class="input-group">
-                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm New Password" required>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                  placeholder="Confirm New Password" required>
                 <div class="input-group-append">
                   <span class="input-group-text" onclick="togglePasswordVisibility('confirmPassword')">
                     <i class="fas fa-eye-slash"></i>
@@ -84,7 +82,7 @@
                 </div>
               </div>
             </div>
-  
+
             <button type="submit" class="btn btn-primary btn-block">Change Password</button>
           </form>
         </div>
@@ -109,4 +107,17 @@
       icon.classList.add("fa-eye-slash"); // Ubah ikon menjadi eye-slash
     }
   }
+</script>
+<script>
+  document.getElementById('menu-toggle').addEventListener('click', function () {
+    var sidebar = document.getElementById('sidebar');
+    var content = document.getElementById('content');
+    var footer = document.querySelector('footer');
+
+    sidebar.classList.toggle('closed');
+    content.classList.toggle('shifted');
+
+    // Toggle class full-width pada footer
+    footer.classList.toggle('full-width');
+  });
 </script>

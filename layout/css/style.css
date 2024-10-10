@@ -56,10 +56,14 @@ html {
 	margin-right: 10px;
 }
 
-.navbar .logout {
+.logout {
+	text-decoration: none; /* Menghilangkan garis bawah secara default */
+	color: inherit; /* Warna teks mengikuti warna teks induk */
+}
+
+.logout:hover {
+	text-decoration: underline; /* Menambahkan garis bawah saat hover */
 	color: white;
-	margin-left: 10px;
-	font-size: 1rem;
 }
 
 /* Sidebar styles */
@@ -96,8 +100,7 @@ html {
 .content {
 	flex: 1;
 	padding: 20px;
-	margin-left: 250px; /* Adjust based on sidebar width */
-	margin-bottom: 60px;
+	margin-left: 250px;
 	transition: margin-left 0.3s ease;
 }
 
@@ -354,7 +357,8 @@ span {
 }
 
 .user-info span {
-	margin-right: 40px;
+	margin-right: 30px;
+	margin-left: -2px;
 }
 
 .container-icon {
@@ -392,4 +396,3 @@ span {
 .text-icon {
 	padding-left: 8px;
 }
-

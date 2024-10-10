@@ -2,12 +2,6 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class Keuangan_model extends CI_Model
 {
-  public function __construct()
-  {
-    parent::__construct();
-    $this->load->database();
-  }
-
   public function get_pemasukan_hari_ini($id_pengguna)
   {
     $this->db->select_sum('nominal_masuk');
@@ -25,6 +19,7 @@ class Keuangan_model extends CI_Model
     $query = $this->db->get('pengeluaran');
     return $query->row()->nominal_keluar ?: 0;
   }
+
 
   public function get_pemasukan_bulan_ini($id_pengguna)
   {

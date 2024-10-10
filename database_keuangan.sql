@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2024 at 08:40 AM
+-- Generation Time: Oct 10, 2024 at 01:28 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -24,27 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kategori`
---
-
-CREATE TABLE `kategori` (
-  `id_kategori` int(11) NOT NULL,
-  `id_pengguna` int(11) NOT NULL,
-  `deskripsi` varchar(255) NOT NULL,
-  `tanggal_dibuat` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `kategori`
---
-
-INSERT INTO `kategori` (`id_kategori`, `id_pengguna`, `deskripsi`, `tanggal_dibuat`) VALUES
-(1, 1, 'Tes', '2024-10-07 03:43:56'),
-(2, 1, 'WAWA', '2024-11-08 08:48:21');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `pemasukan`
 --
 
@@ -61,11 +40,9 @@ CREATE TABLE `pemasukan` (
 --
 
 INSERT INTO `pemasukan` (`id_pemasukan`, `id_pengguna`, `nominal_masuk`, `tanggal_masuk`, `deskripsi`) VALUES
-(1, 1, 10000000.00, '2024-10-02', 'pemasukan hari ini'),
-(2, 1, 25000000.00, '2024-10-02', 'uang masuk'),
-(3, 1, 100000000.00, '2024-09-29', 'uang gajian'),
-(4, 9, 25000000.00, '2024-10-05', 'uang masuk'),
-(5, 12, 100000000.00, '2024-10-07', 'Uang gajian');
+(32, 12, 15000000.00, '2024-10-10', 'Gajian Bulan October'),
+(33, 12, 15000000.00, '2024-11-10', 'Gajian Masuk November'),
+(34, 12, 5000000.00, '2024-10-12', 'Freelance Sampingan');
 
 -- --------------------------------------------------------
 
@@ -86,8 +63,7 @@ CREATE TABLE `pengeluaran` (
 --
 
 INSERT INTO `pengeluaran` (`id_pengeluaran`, `id_pengguna`, `nominal_keluar`, `tanggal_keluar`, `deskripsi`) VALUES
-(1, 1, 1500000.00, '2024-10-02', 'pengeluaran hari ini'),
-(2, 1, 90000000.00, '2024-10-05', 'pembelian barang');
+(30, 12, 7000000.00, '2024-10-10', 'Beli Jajanan');
 
 -- --------------------------------------------------------
 
@@ -109,24 +85,42 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`id_pengguna`, `nama_pengguna`, `email`, `password`, `gambar`, `tanggal_dibuat`) VALUES
-(1, 'Muhamad Rafli', 'rafligaming13@gmail.com', 'tes', '', '2024-10-03 17:11:58'),
+(1, 'Muhamad Rafli', 'rafligaming13@gmail.com', 'tes', '1728398160_Screenshot_2024-09-19_220931.png', '2024-10-08 14:36:00'),
 (8, 'coba', 'coba@gmail.com', 'coba', '', '2024-10-03 12:25:05'),
 (9, 'lala', 'lala@gmail.com', 'lala', '', '2024-10-03 12:56:25'),
 (10, 'rafi', 'rafi@gmail.com', 'rafi', '', '2024-10-03 13:12:43'),
 (11, 'wawa', 'wawa@gmail.com', 'wawa', '', '2024-10-04 08:58:40'),
-(12, 'Muhammad Syahrul Adha', 'syahrul@gmail.com', 'syahrul', 'path/to/default/image.png', '2024-10-06 21:03:04'),
+(12, 'Muhammad Syahrul Adha', 'syahrul@gmail.com', 'syahrul', '1728493169_WhatsApp_Image_2024-10-05_at_11_56_02.jpeg', '2024-10-09 17:52:27'),
 (13, 'arvian', 'arvian@gmail.com', 'arvian', 'path/to/default/image.png', '2024-10-07 01:12:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaksi`
+--
+
+CREATE TABLE `transaksi` (
+  `id_transaksi` int(11) NOT NULL,
+  `id_pengguna` int(11) NOT NULL,
+  `nominal_keluar` decimal(10,2) NOT NULL,
+  `tanggal_transaksi` date NOT NULL,
+  `deskripsi` text NOT NULL,
+  `tipe_transaksi` enum('income','expense') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`id_transaksi`, `id_pengguna`, `nominal_keluar`, `tanggal_transaksi`, `deskripsi`, `tipe_transaksi`) VALUES
+(57, 12, 15000000.00, '2024-10-10', 'Gajian Bulan October', 'income'),
+(58, 12, 7000000.00, '2024-10-10', 'Beli Jajanan', 'expense'),
+(59, 12, 15000000.00, '2024-11-10', 'Gajian Masuk November', 'income'),
+(60, 12, 5000000.00, '2024-10-12', 'Freelance Sampingan', 'income');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `kategori`
---
-ALTER TABLE `kategori`
-  ADD PRIMARY KEY (`id_kategori`),
-  ADD KEY `id_pengguna` (`id_pengguna`);
 
 --
 -- Indexes for table `pemasukan`
@@ -149,26 +143,27 @@ ALTER TABLE `pengguna`
   ADD PRIMARY KEY (`id_pengguna`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Indexes for table `transaksi`
 --
+ALTER TABLE `transaksi`
+  ADD PRIMARY KEY (`id_transaksi`),
+  ADD KEY `id_pengguna` (`id_pengguna`);
 
 --
--- AUTO_INCREMENT for table `kategori`
+-- AUTO_INCREMENT for dumped tables
 --
-ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pemasukan`
 --
 ALTER TABLE `pemasukan`
-  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
-  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
@@ -177,14 +172,14 @@ ALTER TABLE `pengguna`
   MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT for table `transaksi`
 --
+ALTER TABLE `transaksi`
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
--- Constraints for table `kategori`
+-- Constraints for dumped tables
 --
-ALTER TABLE `kategori`
-  ADD CONSTRAINT `kategori_ibfk_1` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pemasukan`
@@ -197,6 +192,12 @@ ALTER TABLE `pemasukan`
 --
 ALTER TABLE `pengeluaran`
   ADD CONSTRAINT `pengeluaran_ibfk_1` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`);
+
+--
+-- Constraints for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

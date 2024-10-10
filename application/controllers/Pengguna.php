@@ -15,6 +15,7 @@ class Pengguna extends CI_Controller
     {
         // Ambil id_pengguna dari session
         $id_pengguna = $this->session->userdata('id_pengguna');
+        $data['judul'] = 'Data Pengguna';
 
         // Pastikan id_pengguna tersedia
         if (!$id_pengguna) {
@@ -23,7 +24,7 @@ class Pengguna extends CI_Controller
 
         // Ambil data pengguna berdasarkan ID
         $data['pengguna'] = $this->Pengguna_model->get_pengguna_by_id($id_pengguna);
-        
+
         // Ambil gambar dan nama pengguna
         $data['user_images'] = $data['pengguna']['user_images'] ?? 'default.png'; // Gambar pengguna
         $data['nama_pengguna'] = $data['pengguna']['nama_pengguna'] ?? 'User'; // Nama pengguna
