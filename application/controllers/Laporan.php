@@ -14,20 +14,23 @@ class Laporan extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Laporan';
-
+    
         // Mendapatkan input dari form (jika ada)
         $mulai_tanggal = $this->input->post('mulai_tanggal') ? $this->input->post('mulai_tanggal') : date('Y-m-01');
         $sampai_tanggal = $this->input->post('sampai_tanggal') ? $this->input->post('sampai_tanggal') : date('Y-m-t');
         $filter = $this->input->post('filter') ? $this->input->post('filter') : 'semua';
-
-        // Memanggil model untuk mengambil data laporan sesuai filter
-        $data['laporan'] = $this->Laporan_model->get_laporan($mulai_tanggal, $sampai_tanggal, $filter);
-
+    
+        // Mendapatkan id_pengguna dari session
+        $id_pengguna = $this->session->userdata('id_pengguna');
+    
+        // Memanggil model untuk mengambil data laporan sesuai filter dan id_pengguna
+        $data['laporan'] = $this->Laporan_model->get_laporan($mulai_tanggal, $sampai_tanggal, $filter, $id_pengguna);
+    
         // Menyimpan tanggal untuk ditampilkan di view
         $data['mulai_tanggal'] = $mulai_tanggal;
         $data['sampai_tanggal'] = $sampai_tanggal;
         $data['filter'] = $filter;
-
+    
         // Menampilkan tampilan laporan
         $this->load->view('template/header', $data);
         $this->load->view('laporan/index', $data);
@@ -40,8 +43,11 @@ class Laporan extends CI_Controller
         $sampai_tanggal = $this->input->post('sampai_tanggal') ? $this->input->post('sampai_tanggal') : date('Y-m-t');
         $filter = $this->input->post('filter') ? $this->input->post('filter') : 'semua';
 
+        // Mendapatkan id_pengguna dari session
+        $id_pengguna = $this->session->userdata('id_pengguna');
+
         // Memanggil model untuk mengambil data laporan
-        $data['laporan'] = $this->Laporan_model->get_laporan($mulai_tanggal, $sampai_tanggal, $filter);
+        $data['laporan'] = $this->Laporan_model->get_laporan($mulai_tanggal, $sampai_tanggal, $filter, $id_pengguna);
 
         // Buat objek PDF
         $pdf = new TCPDF();
@@ -98,6 +104,8 @@ class Laporan extends CI_Controller
 
         $pdf->writeHTML($html, true, false, true, false, '');
 
+        // Bersihkan buffer output sebelum mengirim PDF
+        ob_clean(); 
         // Output PDF ke browser
         $pdf->Output('laporan_pemasukan_pengeluaran.pdf', 'D'); // 'D' untuk download
     }
