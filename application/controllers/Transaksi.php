@@ -6,6 +6,8 @@ class Transaksi extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
+        $this->load->database();
         $this->load->model('Transaksi_model');
     }
 
@@ -103,27 +105,32 @@ class Transaksi extends CI_Controller
 
     public function update_transaksi()
     {
-        // Ambil data dari form
         $id_transaksi = $this->input->post('id_transaksi');
         $nominal = $this->input->post('nominal_keluar');
         $tanggal = $this->input->post('tanggal_transaksi');
         $deskripsi = $this->input->post('deskripsi');
         $tipe_transaksi = $this->input->post('tipe_transaksi');
-        $id_pengguna = $this->session->userdata('id_pengguna');
-
+    
         $data_transaksi = array(
             'nominal_keluar' => $nominal,
             'tanggal_transaksi' => $tanggal,
             'deskripsi' => $deskripsi,
             'tipe_transaksi' => $tipe_transaksi
         );
-
-        // Update data transaksi
-        $this->Transaksi_model->update_transaksi($id_transaksi, $data_transaksi);
-
-        $this->session->set_flashdata('success', 'Transaksi berhasil diperbarui.');
-        redirect('transaksi/index');
+    
+        // Update transaksi di database
+        if ($this->Transaksi_model->update_transaksi($id_transaksi, $data_transaksi)) {
+            $this->session->set_flashdata('success', 'Transaksi berhasil diperbarui.');
+        } else {
+            $this->session->set_flashdata('error', 'Transaksi gagal diperbarui.'); // Error message
+            log_message('error', 'Update failed for transaction ID: ' . $id_transaksi); // Log the error
+        }
+    
+        redirect('transaksi'); // Redirect ke halaman transaksi
     }
+    
+
+
 
     public function hapus($id_transaksi)
     {

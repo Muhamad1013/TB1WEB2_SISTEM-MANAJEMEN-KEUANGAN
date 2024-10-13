@@ -67,8 +67,16 @@
               ?>
             </td>
             <td>
-              <a href="<?= base_url('index.php/transaksi/edit/' . $tran->id_transaksi) ?>"
-                class="btn btn-warning btn-sm">Edit</a>
+            <button class="btn btn-warning btn-sm btn-edit" 
+    data-toggle="modal" 
+    data-target="#editTransaksiModal"
+    data-id="<?= $tran->id_transaksi ?>"
+    data-nominal="<?= $tran->nominal ?>"
+    data-tanggal="<?= $tran->tanggal ?>"
+    data-deskripsi="<?= $tran->deskripsi ?>"
+    data-tipe="<?= $tran->tipe ?>">
+    Edit
+</button>
               <a href="<?= base_url('index.php/transaksi/hapus/' . $tran->id_transaksi) ?>"
                 class="btn btn-danger btn-sm">Hapus</a>
             </td>
@@ -116,6 +124,50 @@
     </div>
   </div>
 </div>
+
+<!-- Modal Edit Transaksi -->
+<div class="modal fade" id="editTransaksiModal" tabindex="-1" role="dialog" aria-labelledby="editTransaksiModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editTransaksiModalLabel">Edit Transaksi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="editTransaksiForm" method="POST" action="<?php echo site_url('transaksi/update_transaksi'); ?>">
+                <div class="modal-body">
+                    <input type="hidden" name="id_transaksi" id="edit_id_transaksi">
+                    <div class="form-group">
+                        <label for="edit_nominal_keluar">Nominal</label>
+                        <input type="number" class="form-control" id="edit_nominal_keluar" name="nominal_keluar" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_tanggal_transaksi">Tanggal</label>
+                        <input type="date" class="form-control" id="edit_tanggal_transaksi" name="tanggal_transaksi" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_deskripsi">Deskripsi</label>
+                        <textarea class="form-control" id="edit_deskripsi" name="deskripsi"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_tipe_transaksi">Tipe Transaksi</label>
+                        <select class="form-control" id="edit_tipe_transaksi" name="tipe_transaksi" required>
+                            <option value="income">Pemasukan</option>
+                            <option value="expense">Pengeluaran</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <script>
   document.getElementById('menu-toggle').addEventListener('click', function () {
     var sidebar = document.getElementById('sidebar');
@@ -128,5 +180,27 @@
     // Toggle class full-width pada footer
     footer.classList.toggle('full-width');
   });
+
+  $(document).ready(function() {
+    // Saat modal ditampilkan
+    $('#editTransaksiModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Tombol yang memicu modal
+
+        // Ambil data dari atribut data-* tombol
+        var id = button.data('id');
+        var nominal = button.data('nominal');
+        var tanggal = button.data('tanggal');
+        var deskripsi = button.data('deskripsi');
+        var tipe = button.data('tipe');
+
+        // Isi input dengan data yang diambil
+        var modal = $(this);
+        modal.find('#edit_id_transaksi').val(id);
+        modal.find('#edit_nominal_keluar').val(nominal);
+        modal.find('#edit_tanggal_transaksi').val(tanggal);
+        modal.find('#edit_deskripsi').val(deskripsi);
+        modal.find('#edit_tipe_transaksi').val(tipe);
+    });
+});
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
